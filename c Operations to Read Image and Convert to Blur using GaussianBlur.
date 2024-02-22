@@ -1,0 +1,26 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+
+# Define a 5x5 kernel with ones
+kernel = np.ones((5,5), np.uint8)
+print(kernel)
+
+# Make sure the image file is uploaded to Colab before running this code
+path = "/content/hello.jfif"
+
+# Read the image from the specified path
+img = cv2.imread(path)
+
+# Check if the image was successfully loaded
+if img is not None:
+    # Convert the image to grayscale
+    imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    # Apply Gaussian Blur to the grayscale image
+    imgBlur = cv2.GaussianBlur(imgGray, (7, 7), 0)
+
+    # Display the blurred image
+    cv2_imshow(imgBlur)
+else:
+    print("Error: Image not found or unable to read.")
